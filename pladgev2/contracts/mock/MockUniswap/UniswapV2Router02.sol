@@ -2,7 +2,7 @@
  *Submitted for verification at Etherscan.io on 2020-06-05
  */
 // import "hardhat/console.sol";
-pragma solidity ^0.8.28;
+pragma solidity =0.6.6;
 
 interface IUniswapV2Factory {
     function initCodeHash() external pure returns (bytes32);

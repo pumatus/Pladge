@@ -59,6 +59,7 @@ contract multiSignature is multiSignatureClient {
     event SignApplication(address indexed from, bytes32 indexed msgHash, uint256 index);
     event RevokeApplication(address indexed from, bytes32 indexed msgHash, uint256 index);
 
+    // 管理员地址列表  签名权重数
     constructor(address[] memory owners, uint256 limitedSignNum) public multiSignatureClient(address(this)) {
         require(
             owners.length >= limitedSignNum, "Multiple Signature : Signature threshold is greater than owners' length!"
@@ -88,6 +89,7 @@ contract multiSignature is multiSignatureClient {
         signatureMap[msghash][defaultIndex].signatures.addWhiteListAddress(msg.sender);
     }
 
+    // 撤回签名 安全问题
     function revokeSignApplication(bytes32 msghash) external onlyOwner validIndex(msghash, defaultIndex) {
         emit RevokeApplication(msg.sender, msghash, defaultIndex);
         signatureMap[msghash][defaultIndex].signatures.removeWhiteListAddress(msg.sender);

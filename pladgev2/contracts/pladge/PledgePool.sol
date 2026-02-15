@@ -50,7 +50,7 @@ contract PledgePool is ReentrancyGuard, SafeTransfer, multiSignatureClient {
         address borrowToken; // 借款方代币地址 btc eth
         PoolState state; // pool枚举状态
         IDebtToken spCoin; // 凭证地址 spBUSD
-        IDebtTokenn jpCoin; // 凭证地址 jpBTC
+        IDebtToken jpCoin; // 凭证地址 jpBTC
         uint256 autoLiquidateThreshold; // 自动触发的清算阈值
     }
     PoolBaseInfo[] public poolBaseInfo; //pool数组

@@ -7,6 +7,8 @@ interface IMultiSignature {
     function getValidSignature(bytes32 msghash, uint256 lastIndex) external view returns (uint256);
 }
 
+// 多签客户端 使用伪随机存储槽存储多签服务端合约地址
+// validCall 给业务合约关键函数功能加锁
 contract multiSignatureClient {
     // 伪随机存储槽
     uint256 private constant multiSignaturePositon = uint256(keccak256("org.multiSignature.storage"));
@@ -22,6 +24,7 @@ contract multiSignatureClient {
         return address(getValue(multiSignaturePositon));
     }
 
+    // 验证锁
     modifier validCall() {
         // 多签校验逻辑
         checkMultiSignature();
@@ -36,9 +39,11 @@ contract multiSignatureClient {
         assembly {
             value := callvalue()
         }
+        // 哈希拼接
         bytes32 msgHash = keccak256(abi.encodePacked(msg.sender, address(this)));
         address multiSign = getMultiSignatureAddress();
         //        uint256 index = getValue(uint256(msgHash));
+        // 去多签服务端查找 调用者+业务合约 的管理员认证数是否达到阈值
         uint256 newIndex = IMultiSignature(multiSign).getValidSignature(msgHash, defaultIndex);
         require(newIndex > defaultIndex, "multiSignatureClient : This tx is not aprroved");
         //        saveValue(uint256(msgHash),newIndex);
