@@ -1,0 +1,14 @@
+[
+    {
+      "anonymous": false,
+      "inputs": [
+        {"indexed": true,"name":"from","type":"address"},
+        {"indexed": true,"name":"token","type":"address"},
+        {"indexed": false,"name":"amount","type":"uint256"},
+        {"indexed": false,"name":"mintAmount","type":"uint256"}
+      ],
+      "name":"DepositLend",
+      "type":"event"
+    }
+  ]
+  

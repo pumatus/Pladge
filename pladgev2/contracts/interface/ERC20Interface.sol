@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity 0.6.12;
 
 interface ERC20Interface {
     // 根据用户地址查询余额

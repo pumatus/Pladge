@@ -1,8 +1,8 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.28;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.6.12;
 
 import "../multiSignature/multiSignatureClient.sol";
-import "@openzeppelin/contracts/utils/EnumerableSet.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 contract AddressPrivileges is multiSignatureClient {
     constructor(address multiSignature) public multiSignatureClient(multiSignature) {}

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity 0.6.12;
 
 interface IBscPledgeOracle {
     // 根据资产地址查询价格
